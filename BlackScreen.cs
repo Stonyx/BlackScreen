@@ -1,7 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
+
+[assembly: AssemblyCompany("Stonyx")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
+[assembly: AssemblyTitle("Black Screen")]
+[assembly: AssemblyVersion("1.0.0")]
 
 namespace BlackScreen
 {
@@ -12,23 +19,35 @@ namespace BlackScreen
     [STAThread]
     public static void Main(string[] args)
     {
-      // Declare and define needed variables
-      int monitor;
+      // Declare needed variables
+      List<string> devices = new List<string>();
 
-      // Check if a monitor number was not specified and set it to 0 which is interepreted by the
-      //   Black Screen Window class constructor as the primary monitor or first monitor
-      if (!(args.Length > 0) || !Int32.TryParse(args[0], out monitor))
-        monitor = 0;
+      // Loop throught the arguments
+      foreach (string arg in args)
+      {
+        // Parse the argument and add to the list of devices if argument is successfully parsed
+        int screen;
+        if (Int32.TryParse(arg, out screen))
+          devices.Add(@"\\.\DISPLAY" + screen);
+      }
 
-      // Create the application and window objects
+      // Check if no screens were specified or successfully parsed and add the primary screen
+      //   device to the list of devices
+      if (devices.Count == 0)
+        devices.Add(Screen.PrimaryScreen.DeviceName);
+
+      // Create the application
       BSApplication application = new BSApplication();
-      BSWindow window = new BSWindow(monitor);
 
-      // Show the window
-      window.Show();
+      // Loop through the list of devices
+      foreach (string device in devices)
+      {
+        // Create and show a window
+        BSWindow window = new BSWindow(device);
+        window.Show();
+      }
 
-      // Add the main window to the application and run it
-      application.MainWindow = window;
+      // Run the application
       application.Run();
     }
   }
@@ -37,22 +56,19 @@ namespace BlackScreen
   public partial class BSWindow : Window
   {
     // Constructor
-    public BSWindow(int monitor) : base()
+    public BSWindow(string device) : base()
     {
-      // Set the window style to none
+      // Set the window title, style, and startup location
+      Title = "Black Screen";
       WindowStyle = WindowStyle.None;
       WindowStartupLocation = WindowStartupLocation.Manual;
 
-      // Find the specified monitor defaulting to the primary monitor or the first monitor
-      Screen? screen = null;
+      // Find the specified device screen defaulting to the primary screen
+      Screen screen = Screen.PrimaryScreen;
       foreach (Screen i in Screen.AllScreens)
       {
-        if (i.DeviceName == @"\\.\DISPLAY" + monitor)
+        if (i.DeviceName == device)
           screen = i;
-      }
-      if (screen == null)
-      {
-        screen = Screen.PrimaryScreen ?? Screen.AllScreens[0];
       }
 
       // Set the left, top, width, and height
@@ -64,15 +80,26 @@ namespace BlackScreen
       // Set the background to a solid black
       Background = new SolidColorBrush(Colors.Black);
 
-      // Add our loaded event handler
+      // Add the loaded and closed event handlers
       Loaded += LoadedEventHandler;
+      Closed += ClosedEventHandler;
     }
 
     // Loaded event handler
-    private void LoadedEventHandler(object sender, RoutedEventArgs e)
+    private void LoadedEventHandler(object sender, EventArgs args)
     {
       // Maximize the window
       ((Window)sender).WindowState = WindowState.Maximized;
+    }
+
+    // Closed event handler
+    private void ClosedEventHandler(object sender, EventArgs args)
+    {
+      // Close all other application windows
+      foreach (Window window in System.Windows.Application.Current.Windows)
+      {
+        window.Close();
+      }
     }
   }
 }

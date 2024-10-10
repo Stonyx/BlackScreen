@@ -10,7 +10,7 @@ using System.Windows.Media;
 [assembly: AssemblyCompany("Stonyx")]
 [assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTitle("Black Screen")]
-[assembly: AssemblyVersion("1.0.1")]
+[assembly: AssemblyVersion("1.0.2")]
 
 namespace BlackScreen
 {

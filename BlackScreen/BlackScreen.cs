@@ -8,9 +8,9 @@ using System.Windows.Interop;
 using System.Windows.Media;
 
 [assembly: AssemblyCompany("Stonyx")]
-[assembly: AssemblyCopyright("Copyright © 2022")]
+[assembly: AssemblyCopyright("Copyright © 2024")]
 [assembly: AssemblyTitle("Black Screen")]
-[assembly: AssemblyVersion("1.0.2")]
+[assembly: AssemblyVersion("1.0.3")]
 
 namespace BlackScreen
 {
@@ -59,12 +59,12 @@ namespace BlackScreen
   {
     // Import Windows API functions from the user32.dll
     [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
-    private static extern long GetWindowLongPtr32(IntPtr hWnd, int nIndex);
+    private static extern Int32 GetWindowLongPtr32(IntPtr hWnd, int nIndex);
 
     [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
     private static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
     [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
-    private static extern long SetWindowLongPtr32(IntPtr hWnd, int nIndex, long dwNewLong);
+    private static extern Int32 SetWindowLongPtr32(IntPtr hWnd, int nIndex, Int32 dwNewLong);
 
     [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
     private static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
@@ -127,7 +127,7 @@ namespace BlackScreen
       IntPtr styles = GetWindowLongPtr(handle, /* GWL_STYLE */ -16);
 
       // Remove the Thick Frame window style
-      SetWindowLongPtr(handle, /* GWL_STYLE */ -16, (IntPtr)((long)styles ^ /* WS_THICKFRAME */ 0x00040000L));
+      SetWindowLongPtr(handle, /* GWL_STYLE */ -16, (IntPtr)((Int64)styles ^ /* WS_THICKFRAME */ 0x00040000L));
     }
 
     // Closed event handler

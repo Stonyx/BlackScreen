@@ -39,7 +39,9 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Windows" />
-    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -51,21 +53,27 @@
     <None Include="BSApplication.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WPFScreenHelper\ExternDll.cs" />
-    <Compile Include="WPFScreenHelper\NativeMethods.cs" />
-    <Compile Include="WPFScreenHelper\Screen.cs" />
+    <Compile Include="WPFScreenHelper\ExternDll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WPFScreenHelper\NativeMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WPFScreenHelper\Screen.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <ApplicationDefinition Include="BSApplication.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="BSWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="BSApplication.xaml.cs">
       <DependentUpon>BSApplication.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="BSWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="BSWindow.xaml.cs">
       <DependentUpon>BSWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

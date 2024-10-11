@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{817AE04D-596F-49C4-A13A-2F58C15EC9FC}</ProjectGuid>
+    <ProjectGuid>{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BlackScreen</RootNamespace>
     <AssemblyName>BlackScreen</AssemblyName>
@@ -37,12 +37,40 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlackScreen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="BSApplication.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WPFScreenHelper\ExternDll.cs" />
+    <Compile Include="WPFScreenHelper\NativeMethods.cs" />
+    <Compile Include="WPFScreenHelper\Screen.cs" />
+    <ApplicationDefinition Include="BSApplication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="BSWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="BSApplication.xaml.cs">
+      <DependentUpon>BSApplication.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BSWindow.xaml.cs">
+      <DependentUpon>BSWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

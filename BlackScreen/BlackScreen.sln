@@ -2,7 +2,7 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackScreen", "BlackScreen.csproj", "{817AE04D-596F-49C4-A13A-2F58C15EC9FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackScreen", "BlackScreen.csproj", "{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{817AE04D-596F-49C4-A13A-2F58C15EC9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{817AE04D-596F-49C4-A13A-2F58C15EC9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{817AE04D-596F-49C4-A13A-2F58C15EC9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{817AE04D-596F-49C4-A13A-2F58C15EC9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43BCD8D-EE80-49AD-87B8-28D8D3795F92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2067D556-9D66-4F0B-BE06-50C40CF25C35}
+		SolutionGuid = {8D1A0C61-EE7E-429A-90E4-A9D663B9E52C}
 	EndGlobalSection
 EndGlobal

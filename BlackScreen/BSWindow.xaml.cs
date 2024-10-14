@@ -29,9 +29,13 @@ namespace BlackScreen
       Top = targetScreen.Bounds.Top;
       Width = targetScreen.Bounds.Width;
       Height = targetScreen.Bounds.Height;
+    }
 
-      // Add the closing event handler
-      Closing += ClosingEventHandler;
+    // Loaded event handler
+    private void LoadedEventHandler(object sender, EventArgs args)
+    {
+      // Maximize the window
+      ((Window)sender).WindowState = WindowState.Maximized;
     }
 
     // Closing event handler

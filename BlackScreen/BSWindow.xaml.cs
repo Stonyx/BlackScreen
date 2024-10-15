@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using WpfScreenHelper;
 
@@ -7,6 +8,9 @@ namespace BlackScreen
   // Black Screen Window class
   public partial class BSWindow : Window
   {
+    // Member variables
+    protected bool IsClosing = false;
+
     // Constructor
     public BSWindow(Int16 screenNumber) : base()
     {
@@ -32,19 +36,24 @@ namespace BlackScreen
     }
 
     // Loaded event handler
-    private void LoadedEventHandler(object sender, EventArgs args)
+    protected void LoadedEventHandler(object sender, EventArgs args)
     {
       // Maximize the window
-      ((Window)sender).WindowState = WindowState.Maximized;
+      // Note: we maximize the window to display it correctly when DPI scaling is involved and we do so in the loaded
+      //   event handler to allow the window to show on the specified screen before being maximized
+      WindowState = WindowState.Maximized;
     }
 
     // Closing event handler
-    private void ClosingEventHandler(object sender, EventArgs args)
+    protected void ClosingEventHandler(object sender, EventArgs args)
     {
-      // Close all other application windows
-      foreach (Window window in Application.Current.Windows)
+      // Set the closing flag
+      IsClosing = true;
+
+      // Close all application windows that aren't already closing
+      foreach (BSWindow window in Application.Current.Windows.OfType<BSWindow>())
       {
-        if (window != ((Window)sender))
+        if (!window.IsClosing)
           window.Close();
       }
     }

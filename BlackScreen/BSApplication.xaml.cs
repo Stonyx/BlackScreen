@@ -7,7 +7,8 @@ namespace BlackScreen
   // Black Screen Application class
   public partial class BSApplication : Application
   {
-    private void StartupEventHandler(object sender, StartupEventArgs e)
+    // Startup event handler
+    protected void StartupEventHandler(object sender, StartupEventArgs e)
     {
       // Declare needed variables
       List<Int16> screens = new List<Int16>();
